@@ -8,24 +8,28 @@ if (isset($_SESSION)) {
         header('location: ./login.php');
     }
 }
-$users_all = "select * from appointments";
-$res_user = mysqli_query($conn, $users_all);
 
-while ($res = $res_user->fetch_assoc()) {
-    $date = $res['date'];
-    $slot = $res['slot_id'];
-    $id = $res['id'];
-}
-if (isset($_GET['id'])) {
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
 
-    $query_appr = "update appointments set approved=1 where date='$date' and slot_id=$slot and id=$id";
-    // echo $query_appr; exit;
-    mysqli_query($conn, $query_appr) or die("Something Went Wrong ");
+        $user = "select * from appointments where id=$id";
+        $res1 = mysqli_query($conn, $user)->fetch_assoc();
+        
+        if ($res1['approved'] == 1) {
+            echo "<script>alert('Please Unapprove the Slot Before Deleting!!!');
+            window.location='./appointment.php';
+            </script>";
+            // header("location: ./appointment.php");
+        } else {
+            
+            $query_appr = "delete from appointments where id=$id";
+            // echo $query_appr; exit;
+            mysqli_query($conn, $query_appr) or die("Something Went Wrong ");
+            header("location: ./appointment.php");
 
+        }
+    }
 
-    $query_slot = "insert into approved_slots(date, slot_id) values ( '$date',  $slot)";
-    mysqli_query($conn, $query_slot) or die("Something Went Wrong ");
-}
 
 
 ?>
@@ -69,12 +73,12 @@ if (isset($_GET['id'])) {
 
     <style>
         .status-btn {
-            /* border: none; */
+
             background-color: #fff;
             padding: 5px 10px;
-            /* width: 70%; */
+            font-weight: 600;
             cursor: pointer;
-            /* box-shadow: 0px 0px 15px gray */
+
         }
     </style>
 
@@ -115,8 +119,9 @@ if (isset($_GET['id'])) {
                                     <th>Phone No.</th>
                                     <th>Date</th>
                                     <th>Slot Id</th>
-                                    <th>Approved</th>
+                                    <th>Status</th>
                                     <th>Approve</th>
+                                    <th>Delete</th>
 
                                 </thead>
                                 <tbody>
@@ -140,11 +145,12 @@ if (isset($_GET['id'])) {
                                 <td>  " . $res['slot_id'] . " </td>
                                 <td class= " . $res['id'] . ">  " . $res['approved'] . " </td>
                                 <td>
-                                            
+                                
                                 <button  id= " . $res['id'] . " class='status-btn''>  
-                                    change status
+                                change status
                                 </button>
-                                     </td>
+                                </td>
+                                <td> <a href='./appointment.php?id=" . $res['id'] . " '> Delete </a> </td>
                                
                               </tr>
                                 ";
@@ -170,20 +176,23 @@ if (isset($_GET['id'])) {
                                         url: "./update_status.php",
                                         data: {
                                             updateId: username,
-
                                         },
-                                        dataType: "html",
+                                        dataType: "json",
                                         success: function(data) {
+                                            // var data = JSON.parse(data);
+                                            if (data.msg1 == 'no') {
+
+                                                $("." + username).html(data.msg2);
+
+                                            } else if (data.msg1 == 'yes') {
+
+                                                console.log(data.msg1);
+                                                $("." + username).html(data.msg2);
 
 
-                                            if (data == 'no') {
-
-                                                $("." + username).html("Unapproved");
-
-                                            } else if (data == 'yes') {
-
-                                                $("." + username).html("Approved");
-
+                                            } else if (data.msg1 == "exists") {
+                                                // console.log(data.msg1);
+                                                alert('Already booked the slot for ' + data.msg2 + ' !!!');
                                             }
                                         }
 
