@@ -157,3 +157,4 @@ $(document).on("change", "#date", function () {
     $(".slotpick").show();
   }
 });
+  

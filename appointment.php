@@ -60,7 +60,7 @@
                     <label for="name" style="margin-bottom:10px;">What should we call you?</label>
                     <input name="name" id="name" class="inputfield" style="margin-bottom:20px;">
                     <label for="phone" style="margin-bottom:10px;">Phone Number</label>
-                    <input type="number" name="phone" id="phone" class="inputfield" style="margin-bottom:20px;">
+                    <input type="number" name="phone" id="phone" class="inputfield" style="margin-bottom:20px;" >
                     <label for="email" style="margin-bottom:10px;">Email</label>
                     <input type="email" name="email" id="email" class="inputfield" style="margin-bottom:20px;">
                     <p id="error" style="margin-bottom: 10px;color:#ff7575"></p>

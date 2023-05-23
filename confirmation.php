@@ -14,13 +14,15 @@
         //    insert into unapproved slots 
             // $query_slot="insert into approved_slots(date, slot_id) values ( '$date',  $slot)";
        
-            $message="<p>Thanks for booking. We will get back to you with a confirmation soon!</p>";
             mysqli_query($conn,$query) or die($message="<p style='color:#ff7575'>There was a problem processing your request. Please call us to book.</p>");
-          
+            
+            $message="<p>Thanks for booking. We will get back to you with a confirmation soon!</p>";
+            echo "<script>window.location = '/architect/confirmation.php'</script>";
             // mysqli_query($conn,$query_slot) or die($message="<p style='color:#ff7575'>There was a problem processing your request. Please call us to book.</p>");
-
+            
         }else{
             $message="<p style='color:#ff7575'>There was a problem processing your request. Please call us to book.</p>";
+            echo "<script>window.location = '/architect/confirmation.php'</script>";
         }
     }else{
         echo "<script>window.location = '/architect/index.php'</script>";
