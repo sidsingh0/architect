@@ -7,7 +7,7 @@
     if (isset($_POST['date'])) {
         $response_array = array();
         $date=$_POST['date'];
-        $query="select * from slots where slot_id not in (select slot_id from unapproved_slots where date='$date')";
+        $query="select * from slots where slot_id not in (select slot_id from approved_slots where date='$date')";
         $query_res = mysqli_query($conn, $query);
         while ($unapproved_slot = $query_res->fetch_assoc()) {
             $unapproved_slot_id=$unapproved_slot["slot_id"];

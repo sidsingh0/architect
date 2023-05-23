@@ -1,23 +1,32 @@
 <?php
 // session_start();
 include("./conditions.php");
-include("../partials/connect.php");
+include("../connect.php");
 if (isset($_SESSION)) {
 
     if ($_SESSION['username'] != "admin") {
         header('location: ./login.php');
     }
 }
+$users_all = "select * from appointments";
+$res_user = mysqli_query($conn, $users_all);
 
+while ($res = $res_user->fetch_assoc()) {
+    $date = $res['date'];
+    $slot = $res['slot_id'];
+    $id = $res['id'];
+}
 if (isset($_GET['id'])) {
-    $id=$_GET['id'];
-    $res=mysqli_query($conn,'delete from appointment where id='.$id.'');
-if(!$res){
-      echo '<script>alert("Something Went Wrong") </script>'; 
-    
+
+    $query_appr = "update appointments set approved=1 where date='$date' and slot_id=$slot and id=$id";
+    // echo $query_appr; exit;
+    mysqli_query($conn, $query_appr) or die("Something Went Wrong ");
+
+
+    $query_slot = "insert into approved_slots(date, slot_id) values ( '$date',  $slot)";
+    mysqli_query($conn, $query_slot) or die("Something Went Wrong ");
 }
 
-}
 
 ?>
 
@@ -58,7 +67,16 @@ if(!$res){
 
 
 
-
+    <style>
+        .status-btn {
+            /* border: none; */
+            background-color: #fff;
+            padding: 5px 10px;
+            /* width: 70%; */
+            cursor: pointer;
+            /* box-shadow: 0px 0px 15px gray */
+        }
+    </style>
 
 
 </head>
@@ -95,9 +113,10 @@ if(!$res){
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone No.</th>
-                                    <th>Message</th>
-                                    <th>Delete</th>
-                                    <!-- <th>Delete</th> -->
+                                    <th>Date</th>
+                                    <th>Slot Id</th>
+                                    <th>Approved</th>
+                                    <th>Approve</th>
 
                                 </thead>
                                 <tbody>
@@ -105,11 +124,11 @@ if(!$res){
                                     <?php
 
 
-                                    $users_all = "select * from appointment";
+                                    $users_all = "select * from appointments";
                                     $res_user = mysqli_query($conn, $users_all);
 
                                     while ($res = $res_user->fetch_assoc()) {
-
+                                        $res['approved'] = $res['approved'] == 1 ? 'Approved' : 'Unapproved';
 
                                         echo "
                             <tr>
@@ -117,8 +136,15 @@ if(!$res){
                                 <td>  " . $res['name'] . " </td>
                                 <td > <a class='text-primary' href='mailto:" . $res['email'] . "'>  " . $res['email'] . "</a> </td>
                                 <td>   <a class='text-primary' href='tel:" . $res['phone'] . "'>  " . $res['phone'] . "</a>  </td>
-                                <td>  " . $res['message'] . " </td>
-                                <td>  <a href='appointment.php?id=". $res['id'] . "'> Delete</td>
+                                <td>  " . $res['date'] . " </td>
+                                <td>  " . $res['slot_id'] . " </td>
+                                <td class= " . $res['id'] . ">  " . $res['approved'] . " </td>
+                                <td>
+                                            
+                                <button  id= " . $res['id'] . " class='status-btn''>  
+                                    change status
+                                </button>
+                                     </td>
                                
                               </tr>
                                 ";
@@ -130,13 +156,40 @@ if(!$res){
 
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                             <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-                            
-<script>
 
-$(function() {
-$("#appointment").DataTable();
-});
-</script>
+                            <script>
+                                $(function() {
+                                    $("#appointment").DataTable();
+                                });
+
+
+                                $('.status-btn').on('click', function() {
+                                    var username = $(this).attr('id');
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "./update_status.php",
+                                        data: {
+                                            updateId: username,
+
+                                        },
+                                        dataType: "html",
+                                        success: function(data) {
+
+
+                                            if (data == 'no') {
+
+                                                $("." + username).html("Unapproved");
+
+                                            } else if (data == 'yes') {
+
+                                                $("." + username).html("Approved");
+
+                                            }
+                                        }
+
+                                    })
+                                })
+                            </script>
                         </div>
                     </div>
 
@@ -163,6 +216,9 @@ $("#appointment").DataTable();
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+
+
+
 
 </body>
 

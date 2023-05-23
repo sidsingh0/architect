@@ -1,7 +1,7 @@
 <?php
 // session_start();
 include("./conditions.php");
-include("../partials/connect.php");
+include("../connect.php");
 if (isset($_SESSION)) {
     if ($_SESSION['username'] != "admin") {
         header('location: ./login.php');

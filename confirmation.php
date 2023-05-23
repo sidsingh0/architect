@@ -9,9 +9,15 @@
             $email=htmlspecialchars($_POST["email"]);
             $name=htmlspecialchars($_POST["name"]);
 
-            $query="insert into appointments (name, email, phone, date, slot_id, approved) values ('$name', '$email', $phone, '$date',  $slot, 0)";
+            $query="insert into appointments (name, email, phone, date, slot_id) values ('$name', '$email', $phone, '$date',  $slot)";
+            
+        //    insert into unapproved slots 
+            // $query_slot="insert into approved_slots(date, slot_id) values ( '$date',  $slot)";
+       
             $message="<p>Thanks for booking. We will get back to you with a confirmation soon!</p>";
             mysqli_query($conn,$query) or die($message="<p style='color:#ff7575'>There was a problem processing your request. Please call us to book.</p>");
+          
+            // mysqli_query($conn,$query_slot) or die($message="<p style='color:#ff7575'>There was a problem processing your request. Please call us to book.</p>");
 
         }else{
             $message="<p style='color:#ff7575'>There was a problem processing your request. Please call us to book.</p>";

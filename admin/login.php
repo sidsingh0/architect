@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../partials/connect.php");
+include("../connect.php");
 
 if (isset($_POST["username"])) {
 
@@ -17,6 +17,7 @@ if (isset($_POST["username"])) {
             header("Location: ./changepass.php");
             
         } else {
+            
             if (password_verify( $password,$result['password'])) {
                
              
@@ -27,8 +28,10 @@ if (isset($_POST["username"])) {
             
 
           
-                header("Location: ./admin/index.php");
+                header("Location: ./index.php");
             } else {
+
+               
                 echo "Password is Incorrect";
             }
             
@@ -41,58 +44,50 @@ if (isset($_POST["username"])) {
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Legalcare </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-
-    <link rel="stylesheet" href="../css/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Admin Login</h3>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-sd-3 offset-lg-4">
+                    <h1 class="mb-3 text-center">Admin log in</h1>
+                    <form class="mb-3" method="post">
+                        <div class="form-group" >
+                            <label for="email">Username:</label>
+                            <input type="text" class="form-control" name="username" id="email" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" name="password" id="password" required />
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary btn-block">
+                            Login
+                        </button>
+                    </form>
+                    
+                </div>
             </div>
         </div>
-        <hr>
-        <div class="row">
-            <div class="col-lg-12">
-                <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <input type="text" name="username" class="form-control" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
-                    </div>
+    </div>
 
-                    <div class="form-group d-flex">
-                        <button type="submit" name="submit"  class="btn btn-primary py-3 px-5">LOGIN</button>
-                        
-                        <!-- <a class="mx-3" href="./forgetpass.php">Forget Pass?</a> -->
-                    </div>
-                    </div>
-
-                </form>
-
-            </div>
-
-
-        </div>
-        <center>
-    <hr>
-
-    <?php include("./footer.php");?>
-</center>
-    
-</div>
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>
 
 </html>

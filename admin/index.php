@@ -1,7 +1,7 @@
 <?php
 // session_start();
 include("./conditions.php");
-include("../partials/connect.php");
+include("../connect.php");
 
 
 if (isset($_SESSION)){
@@ -83,18 +83,18 @@ if (isset($_POST["cpass"])) {
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="./assets/css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
+  <main id="main" class="main">
 
   <?php
   include("./header.php");
   include("./navbar.php");
   ?>
 
-  <main id="main" class="main">
 
     <div class="pagetitle">
       <h1>Profile</h1>
