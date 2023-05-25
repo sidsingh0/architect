@@ -1,13 +1,13 @@
 <?php
 // session_start();
 include("./conditions.php");
-include("../partials/connect.php");
-if (isset($_SESSION)){
-    if ($_SESSION['username'] != "admin" ) {
-      header('location: ./login.php');
+include("../connect.php");
+if (isset($_SESSION)) {
+    if ($_SESSION['username'] != "admin") {
+        header('location: ./login.php');
     }
-  }
- ?>
+}
+?>
 
 
 
@@ -18,7 +18,7 @@ if (isset($_SESSION)){
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Profile</title>
+    <title>Confirmed Slots</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -38,6 +38,8 @@ if (isset($_SESSION)){
     <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -77,11 +79,11 @@ if (isset($_SESSION)){
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Contact us</h1>
+            <h1>Confirmed Slots</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                    <li class="breadcrumb-item active">Contact Us- Data</li>
+                    <li class="breadcrumb-item active">Confirmed Slots</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -91,43 +93,66 @@ if (isset($_SESSION)){
 
                 <div class="col-xl-12 col-md-12">
 
-                    <div class="card">
-                        <div class="card-body pt-3">
-                            
-                            <table border="1" cellspacing="2" cellpadding="10" width="100%">
-                                <tr>
+                    <div class="">
+                        <div class="">
+                            <table id="confirmed">
+                                <thead>
+
+
                                     <th>Name</th>
                                     <th>Phone No.</th>
                                     <th>Email</th>
-                                    <th>Message</th>
-                                </tr>
-                                <?php
-                                $contact = "select * from contact_us";
-                                $res_contact = mysqli_query($conn, $contact);
-                                if($res_contact){
+                                    <th>Date</th>
+                                    <th>Slot Time</th>
 
-                                    while ($res = $res_contact->fetch_assoc()) {
-                                        
-                                        
-                                        ?>
-                                    <tr>
-                                        <td><?php echo $res['name']; ?></td>
-                                        <td><?php echo $res['phone']; ?></td>
-                                        <td><?php echo $res['email']; ?></td>
-                                        <td><?php echo $res['message']; ?></td>
-                                        <td></td>
-                                        
-                                        <tr>;
-                                            
-                                            <?php } ?>
-                                            
-                                        </table>
-                                    <?php }else{
-                                        echo "no queries to show";
+                                </thead>
+                                <tbody>
+
+                                    <?php
+                                    $q_slots = "SELECT * from appointments join approved_slots join slots on (appointments.date = approved_slots.date) and (appointments.slot_id and approved_slots.slot_id)and (slots.slot_id = approved_slots.slot_id) where approved = 1";
+                                    $res_slots = mysqli_query($conn, $q_slots);
+
+                                    if ($res_slots) {
+
+                                        while ($res = $res_slots->fetch_assoc()) {
+
+
+                                    ?>
+                                            <tr>
+                                                <td><?php echo $res['name']; ?></td>
+                                                <td>
+                                                    <a href="tel:<?php echo $res['phone']; ?>">
+                                                        <?php echo $res['phone']; ?>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="mailto:<?php echo $res['phone']; ?>">
+                                                        <?php echo $res['email']; ?>
+                                                    </a>
+                                                </td>
+                                                <td><?php echo $res['date']; ?></td>
+                                                <td><?php echo $res['slot_name']; ?></td>
+
+
+                                            </tr>
+
+                                        <?php } ?>
+
+
+                                </tbody>
+                            </table>
+                        <?php } else {
+                                        echo "No Entries to Show";
                                     } ?>
-                            <!-- ============displaying data with approval button========== -->
 
-                        
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                        <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+                        <script>
+                            $(function() {
+                                $("#confirmed").DataTable();
+                            });
+                        </script>
                         </div>
                     </div>
 
@@ -138,7 +163,7 @@ if (isset($_SESSION)){
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <?php include("./footer.php");?>
+    <?php include("./footer.php"); ?>
 
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
