@@ -175,20 +175,28 @@ h2{
     grid-template-columns: 0.75fr 3fr;
     column-gap:40px;
     padding-right: 0px;
+    overflow: hidden;
 }
 .project-text>h2{
     margin-bottom: 10px;
 }
 
 .slider-container{
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* gap: 40px; */
     overflow:hidden;
 }
 .slider-card{
 
 }
+.swiper-slide{
+    max-width: 300px!important;
+}
+.project-slider-container{
+    /* background-color: #F6F6F6; */
+}
+
 .slider-image{
     height:420px;
     width:290px;
@@ -1037,6 +1045,9 @@ dialog::backdrop{
         bottom: 18px;
         left: 5%;
         width: 90%;
+    }
+    .swiper-slide {
+        max-width: 222px!important;
     }
 }
 
