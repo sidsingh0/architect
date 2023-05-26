@@ -96,6 +96,11 @@ section,footer{
     position: absolute;
     bottom:14%;
     right:7%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.heroarrow:hover{
+    translate: 0px 3px;
 }
 
 h2{
@@ -116,6 +121,7 @@ h2{
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap:20px;
+    cursor: pointer;
 }
 
 .servicecard{
@@ -174,20 +180,28 @@ h2{
     grid-template-columns: 0.75fr 3fr;
     column-gap:40px;
     padding-right: 0px;
+    overflow: hidden;
 }
 .project-text>h2{
     margin-bottom: 10px;
 }
 
 .slider-container{
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* gap: 40px; */
     overflow:hidden;
 }
 .slider-card{
 
 }
+.swiper-slide{
+    max-width: 300px!important;
+}
+.project-slider-container{
+    /* background-color: #F6F6F6; */
+}
+
 .slider-image{
     height:420px;
     width:290px;
@@ -242,10 +256,8 @@ h2{
     flex-direction: column;
     justify-content: end;
 }
-.reviewcardcontainer{
-    display: flex;
-    gap:40px;
-}
+
+
 .reviewcontrols{
     margin-top: 40px;
 }
@@ -509,7 +521,90 @@ button, input[type="submit"], input[type="reset"] {
     color: black;
     font-weight: 500!important;
 }
+dialog{
+    background-color: #1c1c1c;
+    border: 3px solid #2b2b2b;
+    position: fixed;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    outline: #1c1c1c;
+    z-index: 9999;
+    width: 82%;
+    /* line-height: 25px; */
+}
+.servicedialog{
+    padding:40px;
+}
+dialog::backdrop{
+    background-color: rgba(1,1,1,0.9);
+}
+.servicedialoglayout{
+    display: grid;
+    grid-template-columns:1fr 1fr ;
+}
+.dialogheader{
+    margin-bottom: 20px;
+}
+.dialogimg{
+    background: url('/architect/assets/img/appointment1.png');
+    background-position: center;
+    background-size: cover;
+    margin-right: 20px;
+}
+.dialogbody>ul>li::before{
+    content: ">";
+    color: #FFCB74;
+    /* font-weight: bold; */
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+.dialogbody>ul>li{
+    margin-bottom: 5px;
+    margin-left: 1em;
+    padding-right: 1em;
+}
+.dialogbody{
+    /* grid-area: "b"; */
+}
+.dialogcardgroup{
+    display: flex;
+    gap:20px
+}
+.dialogcardgroup>div{
+    flex:1;
+}
+.dialogcard{
+    /* grid-area: "c"; */
+    background-color: #2B2B2B;
+    padding: 12px 20px;
+    margin-top: 20px;
+    display: flex;
+    gap:10px;
+}
+.dialogcardimage>img{
+    height: 48px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.dialogcardimage>img:hover{
+    translate: 2px -2px;
+}
+.dialogcardimage{
+    display: flex;
+    align-items: center;
+    gap:7px;
+    margin-left: auto;
 
+}
+
+.dialogclosebutton{
+    position: absolute;
+    cursor: pointer;
+    top:45px;
+    right: 45px;
+}
 /* media queries */
 @media screen and (max-width:1239px) {
     .navlink li {
@@ -610,6 +705,7 @@ button, input[type="submit"], input[type="reset"] {
 
 .heroarrow1{
     display: none;
+    cursor: pointer;
 }
 
 .hamburger{
@@ -645,11 +741,12 @@ button, input[type="submit"], input[type="reset"] {
     color:#FFCB74;
 }
 
-
+.m-reviewcardcontainer{
+    display: none;
+}
 .m-reviewcard{
     background-color: #1C1C1C!important;
     padding: 20px;
-    display: none;
 }
 
 .m-reviewcard-bottom{
@@ -675,6 +772,92 @@ button, input[type="submit"], input[type="reset"] {
     font-weight: 500;
 }
 
+.projectsectionheader{
+    margin-bottom: 20px;
+}
+.projectcardcontainer{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+.projectcardcontainer>.slider-card{
+    width: 100%!important;
+}
+.projectcardcontainer>.slider-card>.slider-image{
+    width: 100%!important;
+}
+
+.photogallerygrid{
+    margin-top: 20px;
+    /* padding-bottom: 20px; */
+    /* border-bottom: 2px solid #FFCB74; */
+    display: grid;
+    gap:15px;
+    grid-template-columns: 1fr 1fr 4fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "img2 img2 img1" 
+                         "img3 img4 img1";
+}
+.photogallerygridimg:nth-child(1){
+    grid-area: img1 ;
+    height: 400px;
+}
+.photogallerygridimg:nth-child(2){
+    grid-area: img2 ;
+    height: 100%;
+}
+.photogallerygridimg:nth-child(3){
+    grid-area: img3 ;
+    width: 100%;
+
+}
+.photogallerygridimg:nth-child(4){
+    grid-area: img4 ;
+    width: 100%;
+
+}
+.photogallerygridimg{
+    background-position: center!important;
+    background-size: cover!important;
+    background-repeat: no-repeat!important;
+}
+.singleprojectdescription{
+    display: grid;
+    gap:15px;
+    grid-template-columns: 1fr 1fr 4fr;
+    grid-template-areas: ". . projecttext";
+    margin-top: 20px;
+}
+.singleprojectdescriptionright{
+    grid-area: projecttext;
+}
+.projectcounter{
+    text-align: center;
+    display: flex;
+    /* padding: 20px; */
+    margin-top: 20px;
+    align-items: center;
+    gap:15px;
+    justify-content: space-evenly;
+}
+.projectcounterelement{
+    background-color: #1C1C1C;
+    display: flex;
+    padding: 10px;
+    gap:10px;
+    align-items: center;
+    flex:1;
+    text-align: left;
+}
+.projectcounterelementimg{
+    width: 50px;
+}
+.projectcounterlabel{
+    font-size: 16px;
+}
+.projectcountervalue{
+    font-weight: 600;
+}
 @media only screen and (max-width: 980px) {
     nav{
         display: none;
@@ -752,7 +935,7 @@ button, input[type="submit"], input[type="reset"] {
         width: 85%;
         margin-bottom: 20px;
     }
-    p,a{
+    p,a,li{
         font-size: 16px;
         line-height: 24px;
     }
@@ -824,13 +1007,11 @@ button, input[type="submit"], input[type="reset"] {
     .reviewcard{
         grid-template-columns: 1fr 1fr;
     }
-    .reviewcard2{
-        display: none;
-    }
+
 }
 
 @media screen and (max-width:450px) {
-    .m-reviewcard{
+    .m-reviewcardcontainer{
         display: block;
     }
     .reviewcardcontainer{
@@ -888,5 +1069,129 @@ button, input[type="submit"], input[type="reset"] {
         left: 5%;
         width: 90%;
     }
+    .swiper-slide {
+        max-width: 222px!important;
+    }
 }
 
+@media screen and (min-width:700px) and (max-width:1050px) {
+    .servicedialoglayout{
+        grid-template-columns: 1fr;
+    }
+    #singleprojectmainphoto{
+        height: 300px!important;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .servicedialoglayout{
+        grid-template-columns: 1fr;
+    }
+    .servicedialog{
+        padding: 10px;
+    }
+    .dialogheader {
+        width: 100%;
+        font-size: 37px;
+        line-height: 37px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    .dialogcard{
+        align-items: center;
+        flex-direction: column;
+    }
+    .dialogcardimage{
+        margin: 0px;
+    }
+    .dialogcardtext{
+        text-align: center;
+    }
+    .dialogclosebutton{
+        top: 15px;
+        right: 15px;
+        width:30px
+    }
+}
+
+@media screen and (min-width:475px) and (max-width:700px) {
+    .dialogimg{
+        height: 150px;
+        margin: 0px 0px 10px;
+    }
+    .dialogcard{
+        flex-direction: row;
+    }
+    .dialogcardimage{
+        margin-left: auto;
+    }
+    .dialogcardtext{
+        text-align: left;
+    }
+}
+@media screen and (max-width:1200px) {
+    .projectcardcontainer{
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+@media screen and (max-width:850px) {
+    .projectcardcontainer{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media screen and (max-width:475px) {
+    .projectcardcontainer{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap:15px;
+    }
+    .projectcardcontainer>.slider-card>.slider-image{
+        height: 300px;
+    }
+}
+@media screen and (max-width:390px) {
+    .projectcardcontainer{
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap:15px;
+    }
+    .projectcardcontainer>.slider-card>.slider-image{
+        height: 320px;
+    }
+}
+
+.reviewcardcontainer .swiper-wrapper .swiper-slide {
+    max-width:1000px!important
+}
+.m-reviewcardcontainer .swiper-wrapper .swiper-slide {
+    max-width:1000px!important
+}
+  
+@media screen and (max-width:700px) {
+    #singleprojectmainphoto{
+        height: 300px!important;
+    }
+    .projectcounter{
+        flex-direction: column;
+    }
+    .projectcounterelement{
+        width: 100%;
+    }
+}
+@media screen and (max-width:600px) {
+    .singleprojectdescription{
+        grid-template-areas:"projecttext projecttext projecttext"
+    }
+    .photogallerygrid{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+            "img1 img1"
+            "img1 img1"
+            "img2 img2"
+            "img3 img4";
+    }
+}
+@media screen and (max-width:380px){
+    #singleprojectmainphoto {
+        height: 225px!important;
+    }
+}

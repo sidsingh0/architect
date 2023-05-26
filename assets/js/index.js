@@ -157,4 +157,53 @@ $(document).on("change", "#date", function () {
     $(".slotpick").show();
   }
 });
-  
+
+var swiper = new Swiper(".card_slider", {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+  },
+});
+var swiper1 = new Swiper(".reviewcardcontainer", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    1050: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+  },
+});
+
+var swiper2 = new Swiper(".m-reviewcardcontainer", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+
+$("#customprevbutton").on("click",function(){
+  document.getElementById("swiper-button-prev").click();
+})
+$("#customnextbutton").on("click",function(){
+  document.getElementById("swiper-button-next").click();
+})
+
+$(".heroarrow").on("click",function(){
+  $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+})
+$(".heroarrow1").on("click",function(){
+  $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+})
