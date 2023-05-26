@@ -157,3 +157,14 @@ $(document).on("change", "#date", function () {
     $(".slotpick").show();
   }
 });
+
+document.getElementById("service1button").addEventListener("click", function() {
+  alert(1);
+  document.getElementById("service1modal").showModal();
+});
+
+
+$("#service1button").on("click",function(){
+  alert(1);
+  document.getElementById("service1modal").show();
+})
