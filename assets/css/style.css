@@ -96,6 +96,11 @@ section,footer{
     position: absolute;
     bottom:14%;
     right:7%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.heroarrow:hover{
+    translate: 0px 3px;
 }
 
 h2{
@@ -251,10 +256,8 @@ h2{
     flex-direction: column;
     justify-content: end;
 }
-.reviewcardcontainer{
-    display: flex;
-    gap:40px;
-}
+
+
 .reviewcontrols{
     margin-top: 40px;
 }
@@ -702,6 +705,7 @@ dialog::backdrop{
 
 .heroarrow1{
     display: none;
+    cursor: pointer;
 }
 
 .hamburger{
@@ -737,11 +741,12 @@ dialog::backdrop{
     color:#FFCB74;
 }
 
-
+.m-reviewcardcontainer{
+    display: none;
+}
 .m-reviewcard{
     background-color: #1C1C1C!important;
     padding: 20px;
-    display: none;
 }
 
 .m-reviewcard-bottom{
@@ -1002,13 +1007,11 @@ dialog::backdrop{
     .reviewcard{
         grid-template-columns: 1fr 1fr;
     }
-    .reviewcard2{
-        display: none;
-    }
+
 }
 
 @media screen and (max-width:450px) {
-    .m-reviewcard{
+    .m-reviewcardcontainer{
         display: block;
     }
     .reviewcardcontainer{
@@ -1074,6 +1077,9 @@ dialog::backdrop{
 @media screen and (min-width:700px) and (max-width:1050px) {
     .servicedialoglayout{
         grid-template-columns: 1fr;
+    }
+    #singleprojectmainphoto{
+        height: 300px!important;
     }
 }
 
@@ -1149,5 +1155,43 @@ dialog::backdrop{
     }
     .projectcardcontainer>.slider-card>.slider-image{
         height: 320px;
+    }
+}
+
+.reviewcardcontainer .swiper-wrapper .swiper-slide {
+    max-width:1000px!important
+}
+.m-reviewcardcontainer .swiper-wrapper .swiper-slide {
+    max-width:1000px!important
+}
+  
+@media screen and (max-width:700px) {
+    #singleprojectmainphoto{
+        height: 300px!important;
+    }
+    .projectcounter{
+        flex-direction: column;
+    }
+    .projectcounterelement{
+        width: 100%;
+    }
+}
+@media screen and (max-width:600px) {
+    .singleprojectdescription{
+        grid-template-areas:"projecttext projecttext projecttext"
+    }
+    .photogallerygrid{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+            "img1 img1"
+            "img1 img1"
+            "img2 img2"
+            "img3 img4";
+    }
+}
+@media screen and (max-width:380px){
+    #singleprojectmainphoto {
+        height: 225px!important;
     }
 }

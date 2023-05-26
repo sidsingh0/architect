@@ -57,7 +57,7 @@
         <h2 class="singleprojectheader">Lodha Splendora</h2>
         <p class="singleprojectlocation" style="color:#FFCB74;margin-top:2px;">Kasarvadavli, Thane 400-607</p>
         <div class="photogallerygrid">
-            <div style="background:url('../architect/assets/img/appointment1.png');" class="photogallerygridimg" alt=""></div>
+            <div style="background:url('../architect/assets/img/appointment1.png');" class="photogallerygridimg" alt="" id="singleprojectmainphoto"></div>
             <div style="background:url('../architect/assets/img/appointment2.png');" class="photogallerygridimg" alt=""></div>
             <div style="background:url('../architect/assets/img/project1.png');" class="photogallerygridimg" alt=""></div>
             <div style="background:url('../architect/assets/img/project2.png');" class="photogallerygridimg" alt=""></div>

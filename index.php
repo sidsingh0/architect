@@ -21,7 +21,7 @@ include("./connect.php");
 </head>
 
 <body>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <div id="myLinks">
         <a href="index.php#" style="margin:0;padding:5px 0px 5px 0px">Home</a>
@@ -228,59 +228,104 @@ include("./connect.php");
 
     <section class="reviews">
         <h2>Our happy clients</h2>
-        
-        <div class="reviewcardcontainer">
 
-            <div class="reviewcard">
-                <div class="review-image" style="background-image: url('/architect/assets/img/review1.png');">
+
+        <div class="swiper reviewcardcontainer">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <div class="reviewcard">
+                        <div class="review-image" style="background-image: url('/architect/assets/img/review1.png');">
+                        </div>
+                        <div class="review-text">
+                            <p>“His designs are not only aesthetically pleasing, but also environmentally sustainable, making
+                                him a leader in the industry.”</p>
+                            <br>
+                            <p style="font-weight: 600;">Rhea Chakraborty</p>
+                            <p>Palghar</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="review-text">
-                    <p>“His designs are not only aesthetically pleasing, but also environmentally sustainable, making
-                        him a leader in the industry.”</p>
-                    <br>
-                    <p style="font-weight: 600;">Rhea Chakraborty</p>
-                    <p>Palghar</p>
+                <div class="swiper-slide">
+                    <div class="reviewcard reviewcard2">
+                        <div class="review-image" style="background-image: url('/architect/assets/img/review2.png');">
+                        </div>
+                        <div class="review-text">
+                            <p>“His attention to detail and innovative designs are a testament to his creativity and expertise.”
+                            </p>
+                            <br>
+                            <p style="font-weight: 600;">Amey Mahajan</p>
+                            <p>Titwala</p>
+                        </div>
+                    </div>
                 </div>
+                <div class="swiper-slide">
+                    <div class="reviewcard">
+                        <div class="review-image" style="background-image: url('/architect/assets/img/review1.png');">
+                        </div>
+                        <div class="review-text">
+                            <p>“His designs are not only aesthetically pleasing, but also environmentally sustainable, making
+                                him a leader in the industry.”</p>
+                            <br>
+                            <p style="font-weight: 600;">Rhea Chakraborty</p>
+                            <p>Palghar</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="reviewcard reviewcard2">
-                <div class="review-image" style="background-image: url('/architect/assets/img/review2.png');">
-                </div>
-                <div class="review-text">
-                    <p>“His attention to detail and innovative designs are a testament to his creativity and expertise.”
-                    </p>
-                    <br>
-                    <p style="font-weight: 600;">Amey Mahajan</p>
-                    <p>Titwala</p>
-                </div>
-            </div>
-
+            <div id="swiper-button-next" class="swiper-button-next" style="display:none"></div>
+            <div id="swiper-button-prev" class="swiper-button-prev" style="display:none"></div>
         </div>
 
+        <div class="m-reviewcardcontainer swiper">
+            <div class="swiper-wrapper">
 
-        <div class="m-reviewcard">
-
-            <div class="review-text">
-                <p>“His designs are not only aesthetically pleasing, but also environmentally sustainable, making him a
-                    leader in the industry.”</p>
-                <!-- <br> -->
-                <div class="m-reviewcard-bottom">
-                    <div class="review-image" style="background-image: url('/architect/assets/img/review1.png');">
-                    </div>
+                <div class="swiper-slide">
+                <div class="m-reviewcard">
                     <div class="review-text">
-                        <p style="font-weight: 600;">Rhea Chakraborty</p>
-                        <p>Palghar</p>
+                        <p>“His designs are not only aesthetically pleasing, but also environmentally sustainable, making him a
+                            leader in the industry.”</p>
+                        <!-- <br> -->
+                        <div class="m-reviewcard-bottom">
+                            <div class="review-image" style="background-image: url('/architect/assets/img/review1.png');">
+                            </div>
+                            <div class="review-text">
+                                <p style="font-weight: 600;">Rhea Chakraborty</p>
+                                <p>Palghar</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                </div>
+
+                <div class="swiper-slide">
+                <div class="m-reviewcard">
+                    <div class="review-text">
+                        <p>“His designs are not only aesthetically pleasing, but also environmentally sustainable, making him a
+                            leader in the industry.”</p>
+                        <!-- <br> -->
+                        <div class="m-reviewcard-bottom">
+                            <div class="review-image" style="background-image: url('/architect/assets/img/review1.png');">
+                            </div>
+                            <div class="review-text">
+                                <p style="font-weight: 600;">Siddharth Chakraborty</p>
+                                <p>Palghar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
             </div>
         </div>
 
         <div class="reviewcontrols">
-            <svg width="50" height="50" style="margin-right:20px" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg id="customprevbutton"width="50" height="50" style="margin-right:20px;cursor:pointer" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="35" cy="35" r="33.5" transform="rotate(-180 35 35)" stroke="#FFCB74" stroke-width="3" />
                 <path d="M10.9393 33.9393C10.3536 34.5251 10.3536 35.4749 10.9393 36.0607L20.4853 45.6066C21.0711 46.1924 22.0208 46.1924 22.6066 45.6066C23.1924 45.0208 23.1924 44.0711 22.6066 43.4853L14.1213 35L22.6066 26.5147C23.1924 25.9289 23.1924 24.9792 22.6066 24.3934C22.0208 23.8076 21.0711 23.8076 20.4853 24.3934L10.9393 33.9393ZM58 33.5L12 33.5V36.5L58 36.5V33.5Z" fill="#FFCB74" />
             </svg>
-            <svg width="50" height="50" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg id="customnextbutton" width="50" height="50" style="cursor:pointer" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="35" cy="35" r="33.5" stroke="#FFCB74" stroke-width="3" />
                 <path d="M59.0607 36.0607C59.6464 35.4749 59.6464 34.5251 59.0607 33.9393L49.5147 24.3934C48.9289 23.8076 47.9792 23.8076 47.3934 24.3934C46.8076 24.9792 46.8076 25.9289 47.3934 26.5147L55.8787 35L47.3934 43.4853C46.8076 44.0711 46.8076 45.0208 47.3934 45.6066C47.9792 46.1924 48.9289 46.1924 49.5147 45.6066L59.0607 36.0607ZM12 36.5H58V33.5H12V36.5Z" fill="#FFCB74" />
             </svg>
@@ -490,7 +535,7 @@ include("./connect.php");
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="../architect/assets/js/index.js"></script>
     <script>
-        
+
     </script>
 
 </body>
