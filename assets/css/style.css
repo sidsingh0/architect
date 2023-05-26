@@ -605,6 +605,12 @@ dialog::backdrop{
     top:45px;
     right: 45px;
 }
+.dialogclosebutton1{
+    position: absolute;
+    cursor: pointer;
+    top:45px;
+    right: 45px;
+}
 
 .slider-image a svg{
     transition: 0.3s;
@@ -1115,6 +1121,11 @@ dialog::backdrop{
         text-align: center;
     }
     .dialogclosebutton{
+        top: 15px;
+        right: 15px;
+        width:30px
+    }
+    .dialogclosebutton1{
         top: 15px;
         right: 15px;
         width:30px
