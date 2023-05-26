@@ -70,12 +70,27 @@
 
                 <div class="projectcounter">
                     <div class="projectcounterelement">
-                        <h2 style="font-size: 40px;">2008</h2>
-                        <p>Year of completion</p>
+                        <img class="projectcounterelementimg" src="../architect/assets/img/calendar.png" alt="">
+                        <div class="projectcounterelementtext">
+                            <p class="projectcounterlabel">Year of completion</p>
+                            <p class="projectcountervalue">2009</p>
+                        </div>
                     </div>
                     <div class="projectcounterelement">
-                        <h2 style="font-size: 40px;">6000</h2>
-                        <p>Project Area (in sqm)</p>
+                        <img class="projectcounterelementimg" src="../architect/assets/img/calendar.png" alt="">
+                        <div class="projectcounterelementtext">
+                            <p class="projectcounterlabel">Project Area (in sqm)</p>
+                            <p class="projectcountervalue">6000</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="projectcounter" style="margin-top: 15px;">
+                    <div class="projectcounterelement">
+                        <img class="projectcounterelementimg" src="../architect/assets/img/calendar.png" alt="">
+                        <div class="projectcounterelementtext">
+                            <p class="projectcounterlabel">Client</p>
+                            <p class="projectcountervalue">Lodha Realty Pvt. Ltd.</p>
+                        </div>
                     </div>
                 </div>
             </div>

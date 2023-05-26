@@ -21,6 +21,8 @@ include("./connect.php");
 </head>
 
 <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+
     <div id="myLinks">
         <a href="index.php#" style="margin:0;padding:5px 0px 5px 0px">Home</a>
         <a href="projects.php" style="margin:0;padding:5px 0px 5px 0px">Projects</a>
@@ -226,6 +228,7 @@ include("./connect.php");
 
     <section class="reviews">
         <h2>Our happy clients</h2>
+        
         <div class="reviewcardcontainer">
 
             <div class="reviewcard">
@@ -450,7 +453,6 @@ include("./connect.php");
         </div>
     </dialog>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
         $("#service1openbutton").on("click", function() {
             document.getElementById("service1modal").showModal();
@@ -486,16 +488,9 @@ include("./connect.php");
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="/architect/assets/js/index.js"></script>
+    <script src="../architect/assets/js/index.js"></script>
     <script>
-        var swiper = new Swiper(".card_slider", {
-            slidesPerView: 3,
-            spaceBetween: 30,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-        });
+        
     </script>
 
 </body>

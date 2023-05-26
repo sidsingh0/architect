@@ -829,9 +829,29 @@ dialog::backdrop{
 .projectcounter{
     text-align: center;
     display: flex;
-    padding: 20px;
+    /* padding: 20px; */
+    margin-top: 20px;
     align-items: center;
+    gap:15px;
     justify-content: space-evenly;
+}
+.projectcounterelement{
+    background-color: #1C1C1C;
+    display: flex;
+    padding: 10px;
+    gap:10px;
+    align-items: center;
+    flex:1;
+    text-align: left;
+}
+.projectcounterelementimg{
+    width: 50px;
+}
+.projectcounterlabel{
+    font-size: 16px;
+}
+.projectcountervalue{
+    font-weight: 600;
 }
 @media only screen and (max-width: 980px) {
     nav{

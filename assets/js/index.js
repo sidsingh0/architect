@@ -158,13 +158,11 @@ $(document).on("change", "#date", function () {
   }
 });
 
-document.getElementById("service1button").addEventListener("click", function() {
-  alert(1);
-  document.getElementById("service1modal").showModal();
+var swiper = new Swiper(".card_slider", {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+  },
 });
-
-
-$("#service1button").on("click",function(){
-  alert(1);
-  document.getElementById("service1modal").show();
-})
