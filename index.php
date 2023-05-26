@@ -1,5 +1,8 @@
 <?php
 include("./connect.php");
+$project_query="select project_id,name from projects ORDER BY project_id DESC limit 6";
+$res_project_query=mysqli_query($conn,$project_query);
+
 ?>
 
 
@@ -158,61 +161,32 @@ include("./connect.php");
             <div class="swiper card_slider">
                 <div class="swiper-wrapper">
 
+                <?php 
+                    if (mysqli_num_rows($res_project_query) > 0) {
+                        while ($res = $res_project_query->fetch_assoc()) {
+                            $project_img_query="select path from project_image where project_id=".$res['project_id'];
+                            $res_project_img_query=mysqli_query($conn,$project_img_query);
+                            $img_path=$res_project_img_query->fetch_assoc()['path'];
+                ?>
+
                     <div class="swiper-slide">
                         <div class="slider-card">
-                            <div class="slider-image" style="background-image: linear-gradient(180deg, rgba(17, 17, 17, 0) 70.83%, #111111 100%), url('/architect/assets/img/project1.png');">
-                                <svg width="50" height="50" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div class="slider-image" style="background-image: linear-gradient(180deg, rgba(17, 17, 17, 0) 70.83%, #111111 100%), url('<?php echo "../architect/admin/assets/uploads/".$img_path ?>');">
+                                <a href="project-single.php?id=<?php echo $res['project_id']?>">
+                                    <svg width="50" height="50" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="35" cy="35" r="33.5" stroke="#FFCB74" stroke-width="3" />
                                     <path d="M59.0607 36.0607C59.6464 35.4749 59.6464 34.5251 59.0607 33.9393L49.5147 24.3934C48.9289 23.8076 47.9792 23.8076 47.3934 24.3934C46.8076 24.9792 46.8076 25.9289 47.3934 26.5147L55.8787 35L47.3934 43.4853C46.8076 44.0711 46.8076 45.0208 47.3934 45.6066C47.9792 46.1924 48.9289 46.1924 49.5147 45.6066L59.0607 36.0607ZM12 36.5H58V33.5H12V36.5Z" fill="#FFCB74" />
-                                </svg>
-                                <p>Chester Hills, Palghar</p>
+                                    </svg>
+                                </a>
+                                <p><?php echo $res["name"] ?></p>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="slider-card">
-                            <div class="slider-image" style="background-image: linear-gradient(180deg, rgba(17, 17, 17, 0) 70.83%, #111111 100%), url('/architect/assets/img/project2.png');">
-                                <svg width="50" height="50" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="35" cy="35" r="33.5" stroke="#FFCB74" stroke-width="3" />
-                                    <path d="M59.0607 36.0607C59.6464 35.4749 59.6464 34.5251 59.0607 33.9393L49.5147 24.3934C48.9289 23.8076 47.9792 23.8076 47.3934 24.3934C46.8076 24.9792 46.8076 25.9289 47.3934 26.5147L55.8787 35L47.3934 43.4853C46.8076 44.0711 46.8076 45.0208 47.3934 45.6066C47.9792 46.1924 48.9289 46.1924 49.5147 45.6066L59.0607 36.0607ZM12 36.5H58V33.5H12V36.5Z" fill="#FFCB74" />
-                                </svg>
-                                <p>Chester Hills, Palghar</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slider-card">
-                            <div class="slider-image" style="background-image: linear-gradient(180deg, rgba(17, 17, 17, 0) 70.83%, #111111 100%), url('/architect/assets/img/project3.png');">
-                                <svg width="50" height="50" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="35" cy="35" r="33.5" stroke="#FFCB74" stroke-width="3" />
-                                    <path d="M59.0607 36.0607C59.6464 35.4749 59.6464 34.5251 59.0607 33.9393L49.5147 24.3934C48.9289 23.8076 47.9792 23.8076 47.3934 24.3934C46.8076 24.9792 46.8076 25.9289 47.3934 26.5147L55.8787 35L47.3934 43.4853C46.8076 44.0711 46.8076 45.0208 47.3934 45.6066C47.9792 46.1924 48.9289 46.1924 49.5147 45.6066L59.0607 36.0607ZM12 36.5H58V33.5H12V36.5Z" fill="#FFCB74" />
-                                </svg>
-                                <p>Chester Hills, Palghar</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slider-card">
-                            <div class="slider-image" style="background-image: linear-gradient(180deg, rgba(17, 17, 17, 0) 70.83%, #111111 100%), url('/architect/assets/img/project1.png');">
-                                <svg width="50" height="50" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="35" cy="35" r="33.5" stroke="#FFCB74" stroke-width="3" />
-                                    <path d="M59.0607 36.0607C59.6464 35.4749 59.6464 34.5251 59.0607 33.9393L49.5147 24.3934C48.9289 23.8076 47.9792 23.8076 47.3934 24.3934C46.8076 24.9792 46.8076 25.9289 47.3934 26.5147L55.8787 35L47.3934 43.4853C46.8076 44.0711 46.8076 45.0208 47.3934 45.6066C47.9792 46.1924 48.9289 46.1924 49.5147 45.6066L59.0607 36.0607ZM12 36.5H58V33.5H12V36.5Z" fill="#FFCB74" />
-                                </svg>
-                                <p>Chester Hills, Palghar</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slider-card">
-                            <div class="slider-image" style="background-image: linear-gradient(180deg, rgba(17, 17, 17, 0) 70.83%, #111111 100%), url('/architect/assets/img/project2.png');">
-                                <svg width="50" height="50" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="35" cy="35" r="33.5" stroke="#FFCB74" stroke-width="3" />
-                                    <path d="M59.0607 36.0607C59.6464 35.4749 59.6464 34.5251 59.0607 33.9393L49.5147 24.3934C48.9289 23.8076 47.9792 23.8076 47.3934 24.3934C46.8076 24.9792 46.8076 25.9289 47.3934 26.5147L55.8787 35L47.3934 43.4853C46.8076 44.0711 46.8076 45.0208 47.3934 45.6066C47.9792 46.1924 48.9289 46.1924 49.5147 45.6066L59.0607 36.0607ZM12 36.5H58V33.5H12V36.5Z" fill="#FFCB74" />
-                                </svg>
-                                <p>Chester Hills, Palghar</p>
-                            </div>
-                        </div>
-                    </div>
+
+                <?php
+                        }
+                    }
+                ?>
 
                 </div>
             </div>

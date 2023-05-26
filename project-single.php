@@ -1,5 +1,17 @@
 <?php
-    include("./connect.php");
+include("./connect.php");
+if(isset($_GET['id'])){
+    $project_id=$_GET['id'];
+    $project_query="select * from projects where project_id=$project_id";
+    $res_project_query=mysqli_query($conn,$project_query)->fetch_assoc();
+    
+    $project_img_query="select path from project_image where project_id=$project_id";
+    $res_project_img_query=mysqli_query($conn,$project_img_query);
+
+}else{
+    echo "<script>window.location = '/architect/index.php'</script>";
+}
+
 
 ?>
 
@@ -54,10 +66,18 @@
 
 
     <section class="singleproject" id="singleproject">
-        <h2 class="singleprojectheader">Lodha Splendora</h2>
-        <p class="singleprojectlocation" style="color:#FFCB74;margin-top:2px;">Kasarvadavli, Thane 400-607</p>
+        <h2 class="singleprojectheader"><?php echo $res_project_query["name"] ?></h2>
+        <p class="singleprojectlocation" style="color:#FFCB74;margin-top:2px;"><?php echo $res_project_query["address"] ?></p>
         <div class="photogallerygrid">
-            <div style="background:url('../architect/assets/img/appointment1.png');" class="photogallerygridimg" alt="" id="singleprojectmainphoto"></div>
+            <?php
+                if (mysqli_num_rows($res_project_img_query)>0){
+                    while($res=$res_project_img_query->fetch_assoc()){
+            ?>
+            <div style="background:url('<?php echo "../architect/admin/assets/uploads/".$res["path"] ?>');" class="photogallerygridimg" alt="" id="singleprojectmainphoto"></div>
+            <?php
+                    }
+                }
+            ?>
             <div style="background:url('../architect/assets/img/appointment2.png');" class="photogallerygridimg" alt=""></div>
             <div style="background:url('../architect/assets/img/project1.png');" class="photogallerygridimg" alt=""></div>
             <div style="background:url('../architect/assets/img/project2.png');" class="photogallerygridimg" alt=""></div>
@@ -65,7 +85,7 @@
         <div class="singleprojectdescription">
             <div class="singleprojectdescriptionright">
                 <p>
-                    Mahindra Kale is a passionate architect with a decade of experience in the industry. He is known for his innovative designs that combine functionality with aesthetics, and his ability to work closely with clients to understand and deliver their vision. 
+                    <?php echo $res_project_query["brief"] ?>
                 </p>
 
                 <div class="projectcounter">
@@ -73,14 +93,14 @@
                         <img class="projectcounterelementimg" src="../architect/assets/img/calendar.png" alt="">
                         <div class="projectcounterelementtext">
                             <p class="projectcounterlabel">Year of completion</p>
-                            <p class="projectcountervalue">2009</p>
+                            <p class="projectcountervalue"><?php echo $res_project_query["year"] ?></p>
                         </div>
                     </div>
                     <div class="projectcounterelement">
                         <img class="projectcounterelementimg" src="../architect/assets/img/calendar.png" alt="">
                         <div class="projectcounterelementtext">
                             <p class="projectcounterlabel">Project Area (in sqm)</p>
-                            <p class="projectcountervalue">6000</p>
+                            <p class="projectcountervalue"><?php echo $res_project_query["area"] ?></p>
                         </div>
                     </div>
                 </div>
@@ -89,7 +109,7 @@
                         <img class="projectcounterelementimg" src="../architect/assets/img/calendar.png" alt="">
                         <div class="projectcounterelementtext">
                             <p class="projectcounterlabel">Client</p>
-                            <p class="projectcountervalue">Lodha Realty Pvt. Ltd.</p>
+                            <p class="projectcountervalue"><?php echo $res_project_query["client"] ?></p>
                         </div>
                     </div>
                 </div>
