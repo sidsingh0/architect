@@ -98,6 +98,7 @@ $res_project_query=mysqli_query($conn,$project_query);
         <p>©2023 Mahindra Kale & Architects.</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     <script src="/architect/assets/js/index.js"></script>
 
