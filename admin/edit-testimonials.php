@@ -13,28 +13,29 @@ if (isset($_SESSION)) {
 
 if (isset($_GET["id"])) {
   $test_id = $_GET["id"];
-
-} 
-else {
+} else {
   echo "<script>window.history.back()</script>";
 }
 
 if (isset($_POST["update"])) {
- 
+  $tgt_dir = "assets/uploads/testimonials/";
+  $tgt_file = $tgt_dir . basename($_FILES["profileImg"]["name"]);
+
   // $test_id = $_GET["id"];
-  $name = htmlspecialchars( $_POST["name"]);
+  $name = htmlspecialchars($_POST["name"]);
   $company = htmlspecialchars($_POST["company"]);
   $content = htmlspecialchars($_POST["content"]);
   $position = htmlspecialchars($_POST["position"]);
-  $update_sql = "update testimonials set position='$position', name='$name', company='$company', content='$content' where id=$test_id";
+  $profileImg = htmlspecialchars($_FILES["profileImg"]["tmp_name"]);
+
+  $update_sql = "update testimonials set position='$position', name='$name', company='$company', content='$content',path='$tgt_file' where id=$test_id";
   // echo $update_sql;exit();
   $res_update_sql = mysqli_query($conn, $update_sql) or die(mysqli_error($conn));
 
   if ($res_update_sql) {
 
     echo '<script>alert("Updated Succesfully!")</script>';
-    echo "<script>window.location='./edit-testimonials.php?id=".$test_id."'</script>";
-
+    echo "<script>window.location='./edit-testimonials.php?id=" . $test_id . "'</script>";
   }
 }
 
@@ -45,29 +46,47 @@ if (isset($_POST["delete"])) {
   $company = $_POST["company"];
   $content = $_POST["content"];
   $position = $_POST["position"];
-  $del = "delete from testimonials where id=" . $test_id;
-  $res_del = mysqli_query($conn, $del);
+
+
+  $select_testimonial = "select * from testimonials where id=$test_id";
+  $testimonial = mysqli_query($conn, $select_testimonial)->fetch_assoc();
+
+  if($testimonial){
+
+    $del_img = unlink($testimonial['path']);
+    
+    if ($del_img) {
+      $del = "delete from testimonials where id=" . $test_id;
+      $res_del = mysqli_query($conn, $del);
+    } else {
+      
+      echo '<script>alert("Something Went Wrong!")</script>';
+    }
+  } else{
+    echo '<script>alert("No entries Found!")</script>';
+
+  }
+
+
 
   if ($res_del) {
     echo '<script>alert("Deleted Succesfully!")</script>';
-    
-    $res_1=mysqli_query($conn,"select * from testimonials order by id");
-    
-    if(mysqli_num_rows($res_1) >= 1){
-      $res_1=$res_1->fetch_assoc();
-     
-     $new_test=$res_1['id'];
-      
-      echo "<script>window.location.replace('./edit-testimonials.php?id=".$new_test."')
+
+    $res_1 = mysqli_query($conn, "select * from testimonials order by id");
+
+    if (mysqli_num_rows($res_1) >= 1) {
+      $res_1 = $res_1->fetch_assoc();
+
+      $new_test = $res_1['id'];
+
+      echo "<script>window.location.replace('./edit-testimonials.php?id=" . $new_test . "')
 
       </script>";
-    }else{
+    } else {
       echo "<script>window.location.replace('./add-testimonials.php')
 
       </script>";
-      
     }
-
   } else {
     echo '<script>alert("Something Went Wrong!")</script>';
   }
@@ -131,9 +150,19 @@ if (isset($_POST["delete"])) {
 
         <div class="col-lg-12">
           <!-- Profile Edit Form -->
-         
+
           <form method="POST" enctype="multipart/form-data">
 
+            <div class="row mb-3">
+              <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+              <div class="col-md-8 col-lg-9">
+                <img src="<?php echo $testimonial['path'] ?>" alt="Profile" id="frame" height="100px" width="100px">
+                <div class="pt-2">
+                  <input type="file" name="profileImg" accept="image/*" onchange="preview()">
+
+                </div>
+              </div>
+            </div>
 
             <div class="row mb-3">
               <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Name</label>
@@ -195,7 +224,13 @@ if (isset($_POST["delete"])) {
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    function preview() {
+      frame.src = URL.createObjectURL(event.target.files[0]);
 
+
+    }
+  </script>
 </body>
 
 </html>

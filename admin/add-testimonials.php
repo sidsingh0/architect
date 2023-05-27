@@ -7,23 +7,31 @@ if (isset($_SESSION)) {
     header('location: ./login.php');
   }
 }
+
 if (isset($_POST["name"])) {
+  $tgt_dir="assets/uploads/testimonials/";
+  $tgt_file=$tgt_dir.basename($_FILES["profileImg"]["name"]);
 
-  $name = htmlspecialchars( $_POST["name"]);
-  $company = htmlspecialchars( $_POST["company"]);
-  $position = htmlspecialchars( $_POST["position"]);
-  $content = htmlspecialchars( $_POST["content"]);
+  $name = htmlspecialchars($_POST["name"]);
+  $company = htmlspecialchars($_POST["company"]);
+  $position = htmlspecialchars($_POST["position"]);
+  $content = htmlspecialchars($_POST["content"]);
+  $profileImg=htmlspecialchars($_FILES["profileImg"]["tmp_name"]);
+
+  move_uploaded_file($profileImg,$tgt_file);
 
 
-  $insert_sql = "insert into testimonials ( name, company, position,content) values ('$name', '$company', '$position','$content')";
+  $insert_sql = "insert into testimonials ( name, company, position,content,path) values ('$name', '$company', '$position','$content','$tgt_file')";
   $res_insert_sql = mysqli_query($conn, $insert_sql) or die("Something Went Wrong!!!");
-if($res_insert_sql){
-  echo"<script>alert('Testimonial Added Successfully')</script>";
-}else{
-  echo"<script>alert('Something Went Wrong!!!')</script>";
-
-}
-
+  if ($res_insert_sql) {
+    echo "<script>alert('Testimonial Added Successfully')
+    window.location='./add-testimonials.php';
+    </script>";
+  } else {
+    echo "<script>alert('Something Went Wrong!!!')
+    window.location='./add-testimonials.php';
+    </script>";
+  }
 }
 
 ?>
@@ -82,9 +90,19 @@ if($res_insert_sql){
       <div class="row">
         <div class="col-lg-12">
           <!-- Profile Edit Form -->
-          <form method="POST"  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
+          <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
+         
+          
+            <div class="row mb-3">
+              <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+              <div class="col-md-8 col-lg-9">
+                <img src="" alt="Profile" id="frame" height="100px" width="100px" >
+                <div class="pt-2">
+                  <input type="file" name="profileImg" accept="image/*" onchange="preview()" required>
 
-
+                </div>
+              </div>
+            </div>
             <div class="row mb-3">
               <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Name</label>
               <div class="col-md-8 col-lg-9">
@@ -126,7 +144,7 @@ if($res_insert_sql){
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <?php include("./footer.php");?>
+  <?php include("./footer.php"); ?>
 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -143,6 +161,15 @@ if($res_insert_sql){
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    function preview() {
+      frame.src = URL.createObjectURL(event.target.files[0]);
+
+
+    }
+  </script>
+
+
 
 </body>
 

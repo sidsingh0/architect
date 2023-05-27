@@ -41,7 +41,7 @@ if (isset($_POST["name"])) {
             }
         }
     } else {
-        echo "<script>alert('Something Went Wrong!Please delete the created project and try again.')</script>";
+        echo "<script>alert('Something Went Wrong! Please delete the created project and try again.')</script>";
     }
 }
 
