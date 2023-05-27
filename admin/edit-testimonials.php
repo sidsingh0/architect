@@ -23,12 +23,12 @@ if (isset($_POST["update"])) {
 
   // $test_id = $_GET["id"];
   $name = htmlspecialchars($_POST["name"]);
-  $company = htmlspecialchars($_POST["company"]);
+  // $company = htmlspecialchars($_POST["company"]);
   $content = htmlspecialchars($_POST["content"]);
-  $position = htmlspecialchars($_POST["position"]);
+  $place = htmlspecialchars($_POST["place"]);
   $profileImg = htmlspecialchars($_FILES["profileImg"]["tmp_name"]);
 
-  $update_sql = "update testimonials set position='$position', name='$name', company='$company', content='$content',path='$tgt_file' where id=$test_id";
+  $update_sql = "update testimonials set place='$place', name='$name',  content='$content',path='$tgt_file' where id=$test_id";
   // echo $update_sql;exit();
   $res_update_sql = mysqli_query($conn, $update_sql) or die(mysqli_error($conn));
 
@@ -43,9 +43,9 @@ if (isset($_POST["update"])) {
 if (isset($_POST["delete"])) {
 
   $name = $_POST["name"];
-  $company = $_POST["company"];
+  // $company = $_POST["company"];
   $content = $_POST["content"];
-  $position = $_POST["position"];
+  $place = $_POST["place"];
 
 
   $select_testimonial = "select * from testimonials where id=$test_id";
@@ -179,17 +179,12 @@ if (isset($_POST["delete"])) {
             </div>
 
             <div class="row mb-3">
-              <label for="company" class="col-md-4 col-lg-3 col-form-label">position</label>
+              <label for="place" class="col-md-4 col-lg-3 col-form-label">place</label>
               <div class="col-md-8 col-lg-9">
-                <input name="position" type="text" class="form-control" id="company" value="<?php echo $testimonial['position']; ?>">
+                <input name="place" type="text" class="form-control" id="place" value="<?php echo $testimonial['place']; ?>">
               </div>
             </div>
-            <div class="row mb-3">
-              <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
-              <div class="col-md-8 col-lg-9">
-                <input name="company" type="text" class="form-control" id="company" value="<?php echo $testimonial['company']; ?>">
-              </div>
-            </div>
+           
 
 
             <div class="text-center">

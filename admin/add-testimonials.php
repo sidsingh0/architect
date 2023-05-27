@@ -13,15 +13,15 @@ if (isset($_POST["name"])) {
   $tgt_file=$tgt_dir.basename($_FILES["profileImg"]["name"]);
 
   $name = htmlspecialchars($_POST["name"]);
-  $company = htmlspecialchars($_POST["company"]);
-  $position = htmlspecialchars($_POST["position"]);
+  // $company = htmlspecialchars($_POST["company"]);
+  $place = htmlspecialchars($_POST["place"]);
   $content = htmlspecialchars($_POST["content"]);
   $profileImg=htmlspecialchars($_FILES["profileImg"]["tmp_name"]);
 
   move_uploaded_file($profileImg,$tgt_file);
 
 
-  $insert_sql = "insert into testimonials ( name, company, position,content,path) values ('$name', '$company', '$position','$content','$tgt_file')";
+  $insert_sql = "insert into testimonials ( name,  place,content,path) values ('$name', '$place','$content','$tgt_file')";
   $res_insert_sql = mysqli_query($conn, $insert_sql) or die("Something Went Wrong!!!");
   if ($res_insert_sql) {
     echo "<script>alert('Testimonial Added Successfully')
@@ -118,17 +118,12 @@ if (isset($_POST["name"])) {
             </div>
 
             <div class="row mb-3">
-              <label for="company" class="col-md-4 col-lg-3 col-form-label">Position</label>
+              <label for="place" class="col-md-4 col-lg-3 col-form-label">Place</label>
               <div class="col-md-8 col-lg-9">
-                <input name="position" type="text" class="form-control" id="position" required>
+                <input name="place" type="text" class="form-control" id="place" required>
               </div>
             </div>
-            <div class="row mb-3">
-              <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
-              <div class="col-md-8 col-lg-9">
-                <input name="company" type="text" class="form-control" id="company" required>
-              </div>
-            </div>
+           
 
 
             <div class="text-center">
