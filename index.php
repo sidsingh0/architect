@@ -172,13 +172,13 @@ $res_project_query = mysqli_query($conn, $project_query);
                             <div class="swiper-slide">
                                 <div class="slider-card">
                                     <div class="slider-image" style="background-image: linear-gradient(180deg, rgba(17, 17, 17, 0) 70.83%, #111111 100%), url('<?php echo "../architect/admin/assets/uploads/" . $img_path ?>');">
-                                        <a href="project-single.php?id=<?php echo $res['project_id'] ?>">
+                                        <a href="project-single.php?id=<?php echo $res['project_id']; ?>">
                                             <svg width="50" height="50" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <circle cx="35" cy="35" r="33.5" stroke="#FFCB74" stroke-width="3" />
                                                 <path d="M59.0607 36.0607C59.6464 35.4749 59.6464 34.5251 59.0607 33.9393L49.5147 24.3934C48.9289 23.8076 47.9792 23.8076 47.3934 24.3934C46.8076 24.9792 46.8076 25.9289 47.3934 26.5147L55.8787 35L47.3934 43.4853C46.8076 44.0711 46.8076 45.0208 47.3934 45.6066C47.9792 46.1924 48.9289 46.1924 49.5147 45.6066L59.0607 36.0607ZM12 36.5H58V33.5H12V36.5Z" fill="#FFCB74" />
                                             </svg>
                                         </a>
-                                        <p><?php echo $res["name"] ?></p>
+                                        <p><?php echo $res["name"]; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -220,16 +220,16 @@ $res_project_query = mysqli_query($conn, $project_query);
 
                     ?>
                             <div class="reviewcard">
-                                <!-- <div class="review-image" style="background-image: url('/architect/admin/'<?php echo $res['path'] ?>');"> -->
+                                <!-- <div class="review-image" style="background-image: url('/architect/admin/'<?php echo $res['path']; ?>');"> -->
                                 <div class="review-image" >
 
-                                <img class="review-image" src="./admin/<?php echo $res['path'] ?>" alt="" srcset="">
+                                <img class="review-image" src="./admin/<?php echo $res['path']; ?>" alt="" srcset="">
                                 </div>
                                 <div class="review-text">
-                                    <p>“<?php echo $res['content'] ?>”</p>
+                                    <p>“<?php echo $res['content']; ?>”</p>
                                     <br>
-                                    <p style="font-weight: 600;"><?php echo $res['name'] ?></p>
-                                    <p><?php echo $res['place'] ?></p>
+                                    <p style="font-weight: 600;"><?php echo $res['name']; ?></p>
+                                    <p><?php echo $res['place']; ?></p>
                                 </div>
                             </div>
                     <?php }
@@ -246,47 +246,7 @@ $res_project_query = mysqli_query($conn, $project_query);
             <div id="swiper-button-prev" class="swiper-button-prev" style="display:none"></div>
         </div>
 
-        <div class="m-reviewcardcontainer swiper">
-            <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                    <div class="m-reviewcard">
-                        <div class="review-text">
-                            <p>“His designs are not only aesthetically pleasing, but also environmentally sustainable, making him a
-                                leader in the industry.”</p>
-                            <!-- <br> -->
-                            <div class="m-reviewcard-bottom">
-                                <div class="review-image" style="background-image: url('/architect/assets/img/review1.png');">
-                                </div>
-                                <div class="review-text">
-                                    <p style="font-weight: 600;">Rhea Chakraborty</p>
-                                    <p>Palghar</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="m-reviewcard">
-                        <div class="review-text">
-                            <p>“His designs are not only aesthetically pleasing, but also environmentally sustainable, making him a
-                                leader in the industry.”</p>
-                            <!-- <br> -->
-                            <div class="m-reviewcard-bottom">
-                                <div class="review-image" style="background-image: url('/architect/assets/img/review1.png');">
-                                </div>
-                                <div class="review-text">
-                                    <p style="font-weight: 600;">Siddharth Chakraborty</p>
-                                    <p>Palghar</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+     
 
         <div class="reviewcontrols">
             <svg id="customprevbutton" width="50" height="50" style="margin-right:20px;cursor:pointer" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
