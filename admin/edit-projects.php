@@ -15,17 +15,16 @@ if (isset($_GET["id"])) {
 } else {
     echo "<script>window.history.back()</script>";
 }
-
-
 $select_prjc = "select * from projects where project_id=$test_id";
-$select_prjc_img = "select * from project_image where project_id=$test_id";
 
 $prjc = mysqli_query($conn, $select_prjc)->fetch_assoc();
+
+$select_prjc_img = "select * from project_image where project_id=$test_id";
 
 $prjc_img = mysqli_query($conn, $select_prjc_img);
 
 if (isset($_POST["update"])) {
-    
+
     $name = htmlspecialchars($_POST["name"]);
     $address = htmlspecialchars($_POST["address"]);
     $year = htmlspecialchars($_POST["year"]);
@@ -39,8 +38,8 @@ if (isset($_POST["update"])) {
 
 
     $res_u_prjc = mysqli_query($conn, $u_prjc) or die("Something Went Wrong!!!");
-
-
+    var_dump($res_u_prjc);
+    
 
     if ($res_u_prjc) {
         echo "<script>alert('Project Updated Successfully')</script>";
@@ -64,9 +63,10 @@ if (isset($_POST["delete"])) {
 
     if ($prjc and $prjc_img) {
         while ($res = $prjc_img->fetch_assoc()) {
-
-            if (file_exists($res['path'])) {
-                unlink($res['path']);
+            $path="assets/uploads/".$res['path'];
+            
+            if (file_exists($path)) {
+                unlink($path);
                 $del_img = true;
             } else {
                 $del_img = false;
@@ -79,9 +79,11 @@ if (isset($_POST["delete"])) {
 
             $del_prjc = "delete from projects where project_id=" . $test_id;
             $res_del_prjc = mysqli_query($conn, $del_prjc);
+
+            global $res_del,$res_del_prjc;
         } else {
 
-            echo '<script>alert("Something Went Wrong!")</script>';
+            echo '<script>alert("Something Went Wrong !")</script>';
         }
     } else {
         echo '<script>alert("No entries Found!")</script>';
@@ -164,6 +166,10 @@ if (isset($_POST["delete"])) {
 
     <?php include("./header.php");
     include("./navbar.php");
+
+    $select_prjc = "select * from projects where project_id=$test_id";
+
+    $prjc = mysqli_query($conn, $select_prjc)->fetch_assoc();
     ?>
 
 
@@ -189,12 +195,12 @@ if (isset($_POST["delete"])) {
                         <div class="row mb-3">
                             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Choosen Photos</label>
                             <div class="col-md-8 col-lg-9">
-                               
+
                                 <p style="margin-top:5px;color:#f44336;">For Image Change Delete The Project and Add Again!!!</p>
                                 <p id="filerror" style="margin-top:5px;color:#f44336;"></p>
 
                                 <div class="col-md-8 col-lg-9 mt-3" style="display:inline-block">
-                                    <div id="preview" ><?php
+                                    <div id="preview"><?php
                                                         while ($row = $prjc_img->fetch_assoc()) {
                                                             $img = $row['path'];
                                                             echo "<img src='assets/uploads/$img' height='100px' width='100px'>";
@@ -277,7 +283,7 @@ if (isset($_POST["delete"])) {
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script type="text/javascript">
-      
+
     </script>
 </body>
 
