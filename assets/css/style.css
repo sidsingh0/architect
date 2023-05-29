@@ -598,6 +598,13 @@ dialog::backdrop{
     margin-left: auto;
 
 }
+.homebtn{
+    transition: 0.3s;
+}
+.homebtn:hover{
+    color:black;
+    translate:3px -3px!important;
+}
 
 .dialogclosebutton{
     position: absolute;
