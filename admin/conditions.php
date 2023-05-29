@@ -9,3 +9,6 @@
         echo "<script>alert(Your Session has expired);</script>";
     }
     $_SESSION['start'] = time(); 
+
+
+?>

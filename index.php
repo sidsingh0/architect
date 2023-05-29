@@ -213,17 +213,17 @@ $res_project_query = mysqli_query($conn, $project_query);
 
             <div class="swiper-wrapper">
 
-                <div class="swiper-slide">
-                    <?php
-                    if ($testimonial) {
-                        while ($res = $testimonial->fetch_assoc()) {
+                <?php
+                if ($testimonial) {
+                    while ($res = $testimonial->fetch_assoc()) {
 
-                    ?>
+                ?>
+                        <div class="swiper-slide">
                             <div class="reviewcard">
                                 <!-- <div class="review-image" style="background-image: url('/architect/admin/'<?php echo $res['path']; ?>');"> -->
-                                <div class="review-image" >
+                                <div class="review-image">
 
-                                <img class="review-image" src="./admin/<?php echo $res['path']; ?>" alt="" srcset="">
+                                    <img class="review-image" src="./admin/<?php echo $res['path']; ?>" alt="" srcset="">
                                 </div>
                                 <div class="review-text">
                                     <p>“<?php echo $res['content']; ?>”</p>
@@ -232,12 +232,12 @@ $res_project_query = mysqli_query($conn, $project_query);
                                     <p><?php echo $res['place']; ?></p>
                                 </div>
                             </div>
-                    <?php }
-                    } else {
-                        echo
-                        '<p>No Entries To Show</p>';
-                    } ?>
-                </div>
+                        </div>
+                <?php }
+                } else {
+                    echo
+                    '<p>No Entries To Show</p>';
+                } ?>
 
 
             </div>
@@ -246,7 +246,7 @@ $res_project_query = mysqli_query($conn, $project_query);
             <div id="swiper-button-prev" class="swiper-button-prev" style="display:none"></div>
         </div>
 
-     
+
 
         <div class="reviewcontrols">
             <svg id="customprevbutton" width="50" height="50" style="margin-right:20px;cursor:pointer" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">

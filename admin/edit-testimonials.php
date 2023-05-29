@@ -26,14 +26,27 @@ if (isset($_POST["update"])) {
   // $company = htmlspecialchars($_POST["company"]);
   $content = htmlspecialchars($_POST["content"]);
   $place = htmlspecialchars($_POST["place"]);
+  
   $profileImg = htmlspecialchars($_FILES["profileImg"]["tmp_name"]);
+if($_FILES["profileImg"]["name"] != ""){
+  
+  $select_testimonial = "select * from testimonials where id=$test_id";
+  $testimonial = mysqli_query($conn, $select_testimonial)->fetch_assoc();
 
+  unlink($testimonial['path']);
+  move_uploaded_file($profileImg,$tgt_file);
+  
   $update_sql = "update testimonials set place='$place', name='$name',  content='$content',path='$tgt_file' where id=$test_id";
   // echo $update_sql;exit();
   $res_update_sql = mysqli_query($conn, $update_sql) or die(mysqli_error($conn));
+}else{
+  $update_sql1 = "update testimonials set place='$place', name='$name',  content='$content' where id=$test_id";
+  // echo $update_sql;exit();
+  $res_update_sql1 = mysqli_query($conn, $update_sql1) or die(mysqli_error($conn));
 
-  if ($res_update_sql) {
+}
 
+  if ($res_update_sql or $res_update_sql1) {
     echo '<script>alert("Updated Succesfully!")</script>';
     echo "<script>window.location='./edit-testimonials.php?id=" . $test_id . "'</script>";
   }
@@ -66,8 +79,6 @@ if (isset($_POST["delete"])) {
     echo '<script>alert("No entries Found!")</script>';
 
   }
-
-
 
   if ($res_del) {
     echo '<script>alert("Deleted Succesfully!")</script>';
