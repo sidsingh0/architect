@@ -73,7 +73,7 @@ if(isset($_GET['id'])){
                 if (mysqli_num_rows($res_project_img_query)>0){
                     while($res=$res_project_img_query->fetch_assoc()){
             ?>
-            <div style="background:url('<?php echo "../architect/admin/".$res["path"] ?>');" class="photogallerygridimg" alt="" id="singleprojectmainphoto"></div>
+            <div style="background:url('<?php echo "../architect/admin/assets/uploads/".$res["path"] ?>');" class="photogallerygridimg" alt="" id="singleprojectmainphoto"></div>
             <?php
                     }
                 }
