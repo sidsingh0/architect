@@ -13,7 +13,7 @@ $res_project_query = mysqli_query($conn, $project_query);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahindra Kale Architects</title>
+    <title>Mahendra Kale Architect</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,7 +69,7 @@ $res_project_query = mysqli_query($conn, $project_query);
     </div> -->
 
     <section class="hero" id="home">
-        <h1>Mahindra Kale & Architects</h1>
+        <h1>Mahendra Kale Architect</h1>
         <p>Your vision, our expertise, a perfect partnership. Let’s bring your vision to life.</p>
         <div class="homebtnsection">
             <a class="homebtn" href="#contact">Get in touch</a>
@@ -129,8 +129,8 @@ $res_project_query = mysqli_query($conn, $project_query);
             <img src="/architect/assets/img/sir.png" style="width:100%">
         </div>
         <div class="about-text">
-            <h2>Meet Mr<span style="font-size: 55px;font-weight: 600;color: #FFCB74;">.</span> Mahindra Kale</h2>
-            <p>Mahindra Kale is a passionate architect with a decade of experience in the industry. He is known for his
+            <h2>Meet Mr<span style="font-size: 55px;font-weight: 600;color: #FFCB74;">.</span> Mahendra Kale</h2>
+            <p>Mahendra Kale is a passionate architect with a decade of experience in the industry. He is known for his
                 innovative designs that combine functionality with aesthetics, and his ability to work closely with
                 clients to understand and deliver their vision. </p>
             <div class="about-counter">
@@ -154,7 +154,7 @@ $res_project_query = mysqli_query($conn, $project_query);
     <section class="projects" id="projects">
         <div class="project-text">
             <h2>Projects</h2>
-            <p>Mahindra's portfolio includes a diverse range of projects, from commercial buildings to residential
+            <p>Mahendra's portfolio includes a diverse range of projects, from commercial buildings to residential
                 homes.</p>
         </div>
         <div class="project-slider-container">
@@ -281,7 +281,7 @@ $res_project_query = mysqli_query($conn, $project_query);
                         <img src="/architect/assets/img/contactemail.png" alt="">
                         <div class="contacticon-text">
                             <p style="font-weight:600;">Email</p>
-                            <p class="wordbreak">mahindrakale@gmail.com</p>
+                            <p class="wordbreak">MahendraKale@gmail.com</p>
                         </div>
                     </div>
 
@@ -321,7 +321,7 @@ $res_project_query = mysqli_query($conn, $project_query);
             </a>
 
         </div>
-        <p>©2023 Mahindra Kale & Architects.</p>
+        <p>©2023 Mahendra Kale Architect.</p>
     </footer>
 
     <dialog id="service1modal">

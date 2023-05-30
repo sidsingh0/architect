@@ -27,6 +27,12 @@ if (isset($_SESSION)) {
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link collapsed" href="holiday.php">
+        <i class="bi bi-grid"></i>
+        <span>Add Holidays/Break</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link collapsed" href="confirmed_slots.php">
         <i class="bi bi-grid"></i>
         <span>Confirmed Slots</span>
