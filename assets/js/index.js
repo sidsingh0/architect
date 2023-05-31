@@ -131,7 +131,7 @@ $(document).on("change", "#date", function () {
   } else {
     $(".slotpicknodate").hide();
     document.getElementById("slotpick").innerHTML="";
-    fetch("http://localhost/architect/get_slots.php", {
+    fetch("http://localhost/vandan/architect/get_slots.php", {
       method: "POST",
       body:
         JSON.stringify({date: $(this).val()}),

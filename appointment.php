@@ -121,7 +121,7 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-    <script src="/architect/assets/js/index.js"></script>
+    <script src="../architect/assets/js/index.js"></script>
 
 </body>
 </html>

@@ -232,6 +232,22 @@ h6 {
   border-color: #d3d3d4;
 }
 
+
+.adminslotcontainer{
+  display: flex;
+  gap:20px;
+  flex-wrap: wrap;
+}
+.adminslotelement{
+  background-color: var(--bs-gray-300);
+  padding: 8px 18px;
+  border-radius: 0.375rem;
+}
+.slotselected{
+  background-color:var(--bs-gray-600)!important;
+  color: white;
+  font-weight: 500!important;
+}
 /* Card */
 .card {
   margin-bottom: 30px;
